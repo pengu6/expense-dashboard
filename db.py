@@ -28,7 +28,6 @@ def add_expense(amount, category, date, note):
 
 
 def get_expenses():
-
     conn = sqlite3.connect('expenses.db')
     c = conn.cursor()
 
@@ -37,8 +36,21 @@ def get_expenses():
     conn.close()
     return expenses
 
+
+def delete_expense(expense_id):
+    conn = sqlite3.connect('expenses.db')
+    c = conn.cursor()
+
+    c.execute('DELETE FROM expenses WHERE id = ?', (expense_id,))
+
+    conn.commit()
+    conn.close()
+
+
 if __name__ == "__main__":
     init_db()
-    print(get_expenses())
-
-    
+    print("Before delete:", get_expenses())
+    delete_expense(1)
+    print("After delete:", get_expenses())
+    delete_expense(999)
+    print("After delete:", get_expenses())    
