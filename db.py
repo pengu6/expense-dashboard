@@ -26,6 +26,19 @@ def add_expense(amount, category, date, note):
     conn.commit()
     conn.close()
 
+
+def get_expenses():
+
+    conn = sqlite3.connect('expenses.db')
+    c = conn.cursor()
+
+    c.execute('SELECT * FROM expenses')
+    expenses = c.fetchall()
+    conn.close()
+    return expenses
+
 if __name__ == "__main__":
     init_db()
-    add_expense(12.50, "Food", "2026-09-25", "lunch")
+    print(get_expenses())
+
+    
