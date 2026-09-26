@@ -49,8 +49,3 @@ def delete_expense(expense_id):
 
 if __name__ == "__main__":
     init_db()
-    print("Before delete:", get_expenses())
-    delete_expense(1)
-    print("After delete:", get_expenses())
-    delete_expense(999)
-    print("After delete:", get_expenses())    
